@@ -1,0 +1,51 @@
+{
+  "name": "halopsa-ticket-sync",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/src/server.js",
+    "start:dev": "nodemon",
+    "build": "tsc",
+    "postbuild": "npm run alias",
+    "alias": "resolve-tspaths",
+    "lint": "eslint src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scse-tools/halopsa-ticket-sync.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/scse-tools/halopsa-ticket-sync/issues"
+  },
+  "homepage": "https://github.com/scse-tools/halopsa-ticket-sync#readme",
+  "description": "Stellar Cyber Ticket Sync for HaloPSA Service Desk",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "convict": "^6.2.4",
+    "convict-format-with-validator": "^6.2.0",
+    "express": "^5.1.0",
+    "oauth4webapi": "^3.8.0",
+    "pino": "^9.11.0",
+    "reflect-metadata": "^0.2.2",
+    "source-map-support": "^0.5.21",
+    "sql-template-strings": "^2.2.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/convict": "^6.1.6",
+    "@types/convict-format-with-validator": "^6.0.5",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.13.1",
+    "@types/source-map-support": "^0.5.10",
+    "nodemon": "^3.1.10",
+    "resolve-tspaths": "^0.8.23",
+    "typescript-eslint": "^8.38.0"
+  }
+}

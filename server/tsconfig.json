@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "incremental": false,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "target": "ES2024",
+    "lib": ["ES2024"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "NodeNext",
+    "rootDir": "./",
+    "moduleResolution": "nodenext",
+    "baseUrl": "./",
+    "paths": {
+      ":errors": ["./src/errors.ts"],
+      ":types": ["./src/types/index.ts"],
+      ":types/*": ["./src/types/*"],
+      ":dto": ["./src/dto/index.ts"],
+      ":dto/*": ["./src/dto/*"],
+      ":config": ["./src/config.ts"],
+      ":api/*": ["./src/api/*"],
+      ":utils": ["./src/utils.ts"],
+      ":data": ["./src/data/index.ts"],
+      ":constants": ["./src/constants.ts"],
+      ":app/*": ["./src/*"]
+    },
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.disabled.ts",
+    "**/*.disabled/**"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "watch": ["src/**/*.ts"],
+  "ext": "ts",
+  "ignore": ["*.spec.ts", "*.disabled.ts"],
+  "exec": "_run () { npm run build && node --inspect dist/src/server.js || _run; }; _run",
+  "signal": "SIGTERM",
+  "verbose": false
+}
