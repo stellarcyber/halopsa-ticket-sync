@@ -1,5 +1,11 @@
 # HaloPSA Ticket Sync for Stellar Cyber
 
+## Docker build and run
+
+docker build -t halopsa:latest .
+
+docker run --rm -it --mount type=bind,source=/Users/scottbianco/Library/CloudStorage/Dropbox/pycharm_projects/halopsa-ticket-sync/projects/db,target=/db --env-file /Users/scottbianco/Library/CloudStorage/Dropbox/pycharm_projects/halopsa-ticket-sync/projects/config.env  halopsa:latest
+
 ## Environment Config Schema
 
 The below outlines all configuration options available for syncing between **HaloPSA** and **Stellar Cyber**.  
