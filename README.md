@@ -32,8 +32,8 @@ There is one important file associated with the Sync service that is contained i
    `vi /some/protected/directory/halo-sync.env`
 
 7. Run the docker image using a bind mount to point to the db directory.
-   Replace **/some/db/directory** with the local directory used in step 3.
-   Replace **/some/protected/directory** with the path to the env file used in step 4/5.
+   - Replace **/some/db/directory** with the local directory used in step 3.
+   - Replace **/some/protected/directory** with the path to the env file used in step 4/5.
 
    ``docker run --restart unless-stopped -d --mount type=bind,source=/some/db/directory,target=/db --env-file /some/protected/directory/halo-sync.env halopsa:latest``
 
