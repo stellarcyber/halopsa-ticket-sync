@@ -11,44 +11,30 @@ There is one important file associated with the Sync service that is contained i
 
 1. Clone this project on a target machine running docker
    
-    `git clone https://github.com/stellarcyber/jira-case-sync.git`
+    `git clone https://github.com/stellarcyber/halopsa-ticket-sync.git`
 
 2. Navigate to the cloned repo and build the docker image
    
-    `docker build -t jira-case-sync .`
+    `docker build -t halopsa:latest .`
 
-3. Create a directory on the docker machine that will contain the config. This diredtory will be bind mounted to the container at runtime.
+3. Create a directory on the docker machine that will contain the db using for ticket tracking and timestamps. This directory will be bind mounted to the container at runtime.
 
-   `mkdir /some/config/directory`
+   `mkdir /some/db/directory`
 
-4. Copy the config template to the config directory named above and edit. All directives within the config file are commented as to behavior and expected values.
-
-   `cp config-template.yaml /some/config/directory/config.yaml`
-   
-   `vi /some/config/directory/config.yaml`
-
-5. Create a highly protected directory to store the environmental variables that contain all the credentials needed for the service.
+4. Create a highly protected directory to store the environmental variables that contain all the credentials and configuration directives needed for the service.
 
    `mkdir /some/protected/directory`
 
-6. Copy the env template to the protected directory and edit.
+5. Copy the env template to the protected directory and edit (see the following section for variables and their explainations).
 
-   `cp jira-sync-template.env /some/protected/directory/jira-sync.env`
+   `cp config.env /some/protected/directory/halo-sync.env`
    
-   `vi /some/protected/directory/jira-sync.env`
+   `vi /some/protected/directory/halo-sync.env`
 
-7. Run the docker image using a bind mount to point to the config directory. Replace **/some/config/directory** with the local directory used in step 3/4. Replace **/some/protected/directory** with the local directory used in step 5/6.
+7. Run the docker image using a bind mount to point to the config directory. Replace **/some/db/directory** with the local directory used in step 3. Replace **/some/protected/directory** with the local directory used in step 4/5.
 
    ``docker run --restart unless-stopped -d --mount type=bind,source=/some/config/directory,target=/app/data --env-file /some/protected/directory/jira-sync.env jira-case-sync:latest``
 
-   Logs are stored in a `run.log` file within the config directory
-
-
-## Docker build and run
-
-docker build -t halopsa:latest .
-
-docker run --rm -it --mount type=bind,source=/Users/scottbianco/Library/CloudStorage/Dropbox/pycharm_projects/halopsa-ticket-sync/projects/db,target=/db --env-file /Users/scottbianco/Library/CloudStorage/Dropbox/pycharm_projects/halopsa-ticket-sync/projects/config.env  halopsa:latest
 
 ## Environment Config Schema
 
@@ -134,18 +120,26 @@ Each setting can be provided via environment variables. Sensitive values are mar
 
 ## Example Configuration
 
-```yaml
-HALOPSA_BASE_URL: "https://yourdomain.halopsa.com"
-HALOPSA_ASSIGN_USERNAME: "automation_user"
-HALOPSA_TICKET_TYPE_NAME: "Incident"
-HALOPSA_CLIENT_NAME: "Stellar Cyber"
-HALOPSA_PRIORITY_ID: 1
-HALOPSA_SYNC_PRIORITY: true
+```env
+HALOPSA_BASE_URL=https://<your_halo_domain>.halopsa.com
+HALOPSA_ASSIGN_USERNAME=
+HALOPSA_TICKET_TYPE_NAME=Incident
+HALOPSA_CLIENT_NAME=Stellar Cyber
+HALOPSA_CATEGORY_NAME=
+HALOPSA_PRIORITY_ID=1
+HALOPSA_SYNC_PRIORITY=true
+HALOPSA_IMPACT_NAME=Company Wide
+HALOPSA_URGENCY_NAME=High
+HALOPSA_OIDC_CLIENT_ID=32d**************192b1
+HALOPSA_OIDC_CLIENT_SECRET=cab1a*******************************6d7c16c
+INSTANCE_KEY=
 
-STELLAR_DB_HOST: "yourdomain.stellarcyber.cloud"
-STELLAR_USER: "api_user"
-STELLAR_API_KEY: "your-legacy-api-token"
-STELLAR_VERIFY_SSL: true
 
-SQLITE_FILENAME: "/db/sqlite.db"
-POLL_INTERVAL_MINS: 5
+STELLAR_DB_HOST=<stellar_domain>.stellarcyber.cloud
+STELLAR_USER=SD_API@nologon.nologon
+STELLAR_API_KEY=QsffC7X2U**************************6HYGkzukjA
+STELLAR_VERIFY_SSL=true
+STELLAR_SAAS=true
+
+SQLITE_FILENAME=/db/sqlite.db
+POLL_INTERVAL_MINS=5
