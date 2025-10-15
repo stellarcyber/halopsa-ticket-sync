@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22.13
+ARG NODE_VERSION=22.13-slim
 
 ## Production build -- assumes build context is [ROOT]/projects
 FROM node:${NODE_VERSION} AS prod_build
